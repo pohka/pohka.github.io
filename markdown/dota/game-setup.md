@@ -1,16 +1,15 @@
-# Quick Loading
+# Game Setup
 Load into your dota custom game quickly while in tools mode. This will allow you to iterate and develop faster!
 
-*Set variable "forceHero" to change the hero that is picked when loading*
-
+Just call the init function from within your game mode's InitGameMode function and specify the hero that is picked when loaded
 ---
 
-### addon\_game _mode.lua
+### addon_game _mode.lua
 ```lua
 require("GameSetup")
 
 function myaddon:InitGameMode()
-	GameSetup:init() --initialize setup
+  GameSetup:init("templar_assassin") --initialize setup
 end
 ```
 
@@ -20,11 +19,7 @@ if GameSetup == nil then
   GameSetup = class({})
 end
 
---nil will not force a hero selection
-local forceHero = "templar_assassin"
-
-
-function GameSetup:init()
+function GameSetup:init(forceHero)
   if IsInToolsMode() then  --debug build
     --skip all the starting game mode stages e.g picking screen, showcase, etc
     GameRules:EnableCustomGameSetupAutoLaunch(true)
@@ -83,8 +78,8 @@ end
 
 
 function GameSetup:RandomForNoHeroSelected()
-    --NOTE: GameRules state must be in HERO_SELECTION or STRATEGY_TIME to pick heroes
-    --loop through each player on every team and random a hero if they haven't picked
+  --NOTE: GameRules state must be in HERO_SELECTION or STRATEGY_TIME to pick heroes
+  --loop through each player on every team and random a hero if they haven't picked
   local maxPlayers = 5
   for teamNum = DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS do
     for i=1, maxPlayers do

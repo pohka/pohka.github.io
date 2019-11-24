@@ -15,7 +15,7 @@ Task:Delay(
 )
 ```
 ```lua
- --prints out the parameters passed after the 3 second delay
+--prints out the parameters passed after the 3 second delay
 local taskID = Task:Delay(
   function(params)
     for k,v in pairs(params) do
@@ -62,49 +62,48 @@ local TASK_INTERVAL_COUNT = 3
 
 function Task:init()
   local GameMode = GameRules:GetGameModeEntity()
-	GameMode:SetContextThink("Tasks", Task.OnThink, 0.03)
+  GameMode:SetContextThink("Tasks", Task.OnThink, 0.03)
 end
 
 --delay a function call
 function Task:Delay(func, seconds, params)
   Task.taskCounter = Task.taskCounter + 1
   table.insert(Task.list, {
-      type = TASK_DELAY,
-      endTime = GameRules:GetGameTime() +seconds,
-      func = func,
-      params = params,
-      id = Task.taskCounter,
-      interupted = false
-    }
-  )
-	return Task.taskCounter
+    type = TASK_DELAY,
+    endTime = GameRules:GetGameTime() +seconds,
+    func = func,
+    params = params,
+    id = Task.taskCounter,
+    interupted = false
+  })
+  return Task.taskCounter
 end
 
 --calls a function repeatitivly with a delay, returns the TaskID
 function Task:Interval(func, initalDelay, params)
-	Task.taskCounter = Task.taskCounter + 1
-	table.insert(Task.list, {
+  Task.taskCounter = Task.taskCounter + 1
+  table.insert(Task.list, {
     type = TASK_INTERVAL,
-		endTime = GameRules:GetGameTime() + initalDelay,
-		func = func,
-		params = params,
-		duration = secs,
-		id = Task.taskCounter,
-		interupted = false
-	})
-	return Task.taskCounter
+    endTime = GameRules:GetGameTime() + initalDelay,
+    func = func,
+    params = params,
+    duration = secs,
+    id = Task.taskCounter,
+    interupted = false
+  })
+  return Task.taskCounter
 end
 
 --interupts a task and will return true if task was found with matching id
 function Task:Interupt(taskID)
-	local len = table.getn(Task.list)
-	for i=1, #Task.list do
-		if Task.list[i].id == taskID then
-			Task.list[i].interupted = true
-			return true
-		end
-	end
-	return false
+  local len = table.getn(Task.list)
+  for i=1, #Task.list do
+    if Task.list[i].id == taskID then
+      Task.list[i].interupted = true
+      return true
+    end
+  end
+  return false
 end
 
 function Task:OnThink()

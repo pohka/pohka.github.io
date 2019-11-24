@@ -1,7 +1,7 @@
 # Simple Lua Ability
 1 - First make a lua script to do damage
 
-### vscripts/my\_spell\_name.lua
+### vscripts/my_spell_name.lua
 ```lua
 my_spell_name = class({})
 
@@ -26,7 +26,7 @@ end
 
 2 - Next add it to the abilities key value file
 
-### npc/npc\_abilities\_custom.txt
+### npc/npc_abilities_custom.txt
 ```
 "DOTAAbilities"
 {
@@ -51,15 +51,15 @@ end
 
 3 - Then add the ability in the heroes key value file. This will override a hero\'s default ability loadout
 
-### npc/npc\_heroes\_custom.txt
+### npc/npc_heroes_custom.txt
 ```
 "DOTAHeroes"
 {
   //overriding hero wraith king
   "wraith_king"
   {
-		"override_hero"   "npc_dota_hero_skeleton_king"
-		"Ability1"        "my_spell_name"
+    "override_hero"   "npc_dota_hero_skeleton_king"
+    "Ability1"        "my_spell_name"
   }
 }
 

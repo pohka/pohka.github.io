@@ -1,7 +1,7 @@
 # Ultimate Hotkey Fix
 This is how you get the ultimate hotkey to be set for an ability. You must have your ability in slot 6 and have an ability in each slot from 1-5. If you don't have an ability for all the slots then you can add a hidden ability into the empty slots. This way the hidden abilities won't show up in the HUD.
 
-### npc\_abilities\_custom.txt
+### npc_abilities_custom.txt
 ```
 "hidden_abil"
 {
@@ -10,10 +10,10 @@ This is how you get the ultimate hotkey to be set for an ability. You must have 
 }
 ```
 
-### npc\_heroes\_custom.txt
+### npc_heroes_custom.txt
 ```
 "wraith_king"
-  {
+{
   "override_hero"  "npc_dota_hero_skeleton_king"
   "Ability1"       "hidden_abil"
   "Ability2"       "hidden_abil"

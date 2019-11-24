@@ -1,5 +1,8 @@
 # Camera
 Focusing the camera onto the players hero
+- item 1
+- item 2
+- item 3
 
 ### Example
 ```lua
